@@ -1,0 +1,26 @@
+Comando per scaricare immagine MySQL (Scaricare MySQL come pacchetto pronto da usare)
+docker pull mysql
+
+Comando per creare e avviare il container
+docker run -d --name mysql-db -e MYSQL_DATABASE=academy_db -e MYSQL_USER=academy_user -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -v mysql_data:/var/lib/mysql MySQL
+
+(ho omesso le mie password in questo file)
+
+Comando per verificare se il container è attivo
+docker ps
+
+OUTPUT: 
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+b7f2c9178d66   mysql     "docker-entrypoint.s…"   14 minutes ago   Up 14 minutes   0.0.0.0:3306->3306/tcp, [::]:3306->3306/tcp   mysql-db
+
+Comando per leggere i log del container
+docker logs mysql-db
+
+Comando per fermare il container
+docker stop mysql-db
+
+Comando per far partire il container
+docker start mysql-db
+
+Comando per verificare i volumi
+docker volume ls
