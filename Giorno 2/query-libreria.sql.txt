@@ -1,0 +1,63 @@
+/* Crea la tabella libri e definisce tutti i suoi campi con che tipo di valore devono avere */
+CREATE TABLE LIBRI (
+  id INT PRIMARY KEY,
+  titolo VARCHAR(100),
+  autore VARCHAR(100),
+  genere VARCHAR(50),
+  anno INT,
+  prezzo DECIMAL(10,2),
+  disponibile BOOLEAN
+);
+
+/* Inserisce all'interno della tabella creata prima tutti i record necessari per effettuare i filtri sui record */
+INSERT INTO LIBRI (titolo, autore, genere, anno, prezzo, disponibile)
+VALUES
+('Nebbie di Neon', 'Luca Moretti', 'Cyberpunk', 1998, 14.90, TRUE),
+('Il Codice delle Stelle', 'Elena Valli', 'Fantascienza', 2005, 22.50, TRUE),
+('Ombre di Carta', 'Marco Bellini', 'Thriller psicologico', 2012, 18.00, FALSE),
+('La città che sussurra', 'Giulia Rinaldi', 'Mystery', 2020, 16.75, TRUE),
+('Cronache di un futuro rotto', 'Davide Serra', 'Distopico', 2017, 24.99, FALSE),
+('Il respiro del tempo', 'Sara Conti', 'Romanzo storico', 1994, 12.50, TRUE),
+('L’eco dei sogni', 'Francesco De Santis', 'Fantasy', 2001, 19.90, TRUE),
+('La memoria dell’acqua', 'Alessia Greco', 'Narrativa contemporanea', 2023, 27.80, TRUE),
+('Protocollo Omega', 'Andrea Russo', 'Azione/Techno-thriller', 2010, 31.50, FALSE),
+('Il giardino delle possibilità', 'Martina Leone', 'Romanzo filosofico', 1990, 9.99, TRUE);
+
+
+/* Ordina per prezzo in maniera crescente */
+SELECT * FROM LIBRI ORDER BY prezzo;
+
+/* Mostra i libri disponibili e prezzo compreso fra 10 e 20 euro */
+SELECT * FROM LIBRI WHERE disponibile = TRUE AND prezzo BETWEEN 10 AND 20;
+
+/* Mostra i libri con autore che contenga la a nel suo nome e cognome */
+SELECT titolo, autore FROM LIBRI WHERE autore LIKE '%a%';
+
+/* Mostra 5 libri con anno di distribuzione compreso fra il 2000 e il 2015 ordinati in maniera decrescente */
+SELECT * FROM LIBRI WHERE anno BETWEEN 2000 AND 2015 ORDER BY anno DESC LIMIT 5;
+
+/* Mostra i libri di genere fantasy o fantascienza */
+SELECT * FROM LIBRI WHERE genere IN('Fantasy','Fantascienza');
+
+/* Mostra il numero dei record totali cioe quanti libri ci sono */
+SELECT COUNT(*) FROM LIBRI;
+
+/* Calcola il prezzo massimo, minimo e la media dei libri */
+SELECT MAX(prezzo) AS prezzo_massimo, MIN(prezzo) AS prezzo_minimo, AVG(prezzo) AS prezzo_medio FROM LIBRI;
+
+/* Mostra il numero di libri per ogni genere e il prezzo medio di ogni genere orindato in maniera decrescente*/
+SELECT COUNT(*) AS num_libri_genere, AVG(prezzo) AS prezzo_medio FROM LIBRI GROUP BY genere ORDER BY prezzo_medio DESC;
+
+/* Mostra quale genere ha piu di 2 libri */
+SELECT COUNT(*) AS num_libri_genere FROM LIBRI GROUP BY genere HAVING num_libri_genere > 2;
+
+/* Mostra il titolo dei libri in maiuscolo e la lunghezza in caratteri di ogni titolo */
+SELECT UPPER(titolo) AS titolo_maiusc, LENGTH(titolo) as lungh_char_titolo FROM LIBRI;
+
+/* Mostra il titolo, prezzo e iva */
+SELECT titolo, prezzo, (prezzo * 1.22) AS IVA FROM LIBRI;
+
+/* Mostra quanti anni fa è stato pubblicato ogni libro andando a sottrarre l'anno di pubblicazione all'anno attuale*/
+SELECT titolo, anno, YEAR(CURDATE()) as anno_attuale, YEAR(CURDATE()) - anno AS anni_passati_dalla_pubblicazione FROM LIBRI;
+
+/* Il risultato di questa query: SELECT COUNT(*) FROM LIBRI; è 10 */ 
