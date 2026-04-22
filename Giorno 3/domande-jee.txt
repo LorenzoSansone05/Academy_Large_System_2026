@@ -1,0 +1,25 @@
+1. Cos'è un Web Container? Qual è il suo ruolo in un'applicazione JEE? Fai un esempio di Web Container che conosci.
+
+Un web container è una parte integrata in un server che permette di far eseguire le applicazioni java web. un esempio concreto è apache tomcat.
+
+2. Qual è la differenza tra un sito web statico e un'applicazione web dinamica? Fai un esempio concreto di ciascuno.
+
+La differenza principale tra i due è che col primo l'utente non ha modo di interagire con dati o quant'altro, ha solo la possibilità di vedere il sito ma non di interagirci, invece con un app web dinamica le cose cambiano, l'utente puo avere un esperienza personalizzata rispetto a un altro utente, come per esempio un sito che mette a disposizione una login e un abbonamento, puo esistere l'utente base e l'utente che ha acquistato l'abbonamento e di conseguenza avranno un esperienza diversa tra loro quindi dinamica. Un sito web statico puo essere un sito portfolio che ha lo scopo solo di farsi conoscere, invece come app web dinamica possiamo prendere per esempio i social media o amazon, essi offrono diverse esperienze in base a cosa vuole fare l'utente. 
+
+3. Cos'è un file WAR? Cosa contiene e perché è importante nel deploy di un'applicazione Java web?
+
+Un file .WAR è un pacchetto che ha tutto il necessario per far eseguire la java web app in un web container.
+
+4. Cos'è il protocollo HTTP? Descrivi brevemente cosa succede quando un browser fa una richiesta a un server web (ciclo request-response).
+
+Il protocollo HTTP è un protocollo che permette la comunicazione tra client(utente) e server(chi deve fornire le pagine web dati ecc...).
+
+Quando un browser fa una richiesta a un server web avviene il ciclo request-response, anche se dal lato client non sembra, dietro le quinte noi client facciamo di continuo richieste http, quella per ricevere una pagina web è una richiesta GET ma ovviamente una volta fatta la richiesta deve arrivare la risposta dal lato server che è appunto la pagina web. Un altro caso di richiesta http è la login dove questa volta siamo noi client ad inviare dati al server che poi verranno trattati lato server una volta ricevuti, questa richiesta si chiama POST.
+
+5. A cosa serve il file web.xml in un'applicazione JEE? Fai almeno un esempio di configurazione che può contenere. 
+
+Il file web.xml è il file di configurazione di una web app java, una configurazione che può contenere è quella di quale pagina deve accettare, per esempio index.html   
+
+6. In base a quanto studiato, qual è la differenza tra JEE e Jakarta EE? Perché è avvenuto questo cambiamento di nome?
+
+Il cambiamento è dovuto al cambio di gestione, dalla versione 8 è passata da Oracle alla Eclipse foundation.

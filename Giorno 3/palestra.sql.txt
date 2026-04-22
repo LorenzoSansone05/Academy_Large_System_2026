@@ -1,0 +1,66 @@
+CREATE DATABASE palestra_db;
+
+USE palestra_db;
+
+CREATE TABLE SOCI (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    data_iscrizione DATE,
+    attivo INT DEFAULT 1
+);
+
+CREATE TABLE CORSI (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    istruttore VARCHAR(100),
+    max_partecipanti INT,
+    livello VARCHAR(20)
+);
+
+CREATE TABLE ISCRIZIONI (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    socio_id INT,
+    corso_id INT,
+    data_iscrizione DATE,
+    FOREIGN KEY (socio_id) REFERENCES SOCI(id),
+    FOREIGN KEY (corso_id) REFERENCES CORSI(id)
+);
+
+INSERT INTO SOCI (nome, cognome, email, data_iscrizione, attivo) VALUES
+('Alessio', 'De Santis', 'alessio.desantis@email.it', '2025-01-08', 1),
+('Martina', 'Ferraro', 'martina.ferraro@email.it', '2025-02-12', 1),
+('Davide', 'Caputo', 'davide.caputo@email.it', '2025-03-05', 1),
+('Elena', 'Ruggiero', 'elena.ruggiero@email.it', '2025-03-18', 1),
+('Francesco', 'Vitale', 'francesco.vitale@email.it', '2025-04-02', 1);
+
+INSERT INTO CORSI (nome, istruttore, max_partecipanti, livello) VALUES
+('Functional Training', 'Marco Lombardi', 12, 'Intermedio'),
+('Power Yoga Flow', 'Giulia Santoro', 15, 'Base'),
+('Cross Training Intenso', 'Luca Moretti', 10, 'Avanzato');
+
+INSERT INTO ISCRIZIONI (socio_id, corso_id, data_iscrizione) VALUES
+(1, 1, '2025-04-01'),
+(1, 3, '2025-04-02'),
+(2, 2, '2025-04-03'),
+(3, 1, '2025-04-04'),
+(3, 3, '2025-04-05'),
+(4, 2, '2025-04-06'),
+(5, 1, '2025-04-07');
+
+UPDATE SOCI SET email = 'elena.ruggiero.palestra@email.it' WHERE id = 4;
+
+UPDATE SOCI SET attivo = 0 WHERE id = 2;
+
+DELETE FROM ISCRIZIONI WHERE socio_id = 2;
+
+ALTER TABLE CORSI ADD costo_mensile DECIMAL(6,2);
+
+UPDATE CORSI SET costo_mensile = 34.90 WHERE id = 1;
+UPDATE CORSI SET costo_mensile = 29.90 WHERE id = 2;
+UPDATE CORSI SET costo_mensile = 44.90 WHERE id = 3;
+
+SELECT SOCI.nome, SOCI.cognome, CORSI.nome, ISCRIZIONI.data_iscrizione FROM ISCRIZIONI INNER JOIN SOCI ON ISCRIZIONI.socio_id = SOCI.id INNER JOIN CORSI ON ISCRIZIONI.corso_id = CORSI.id WHERE SOCI.attivo = 1;
+
+SELECT CORSI.nome AS nome_corso, COUNT(*) AS persone_iscritte FROM ISCRIZIONI INNER JOIN CORSI ON ISCRIZIONI.corso_id = CORSI.id GROUP BY corso_id;
