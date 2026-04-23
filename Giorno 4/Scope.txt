@@ -1,0 +1,3 @@
+REQUEST scope: lo userei per un form di ricerca che mostra risultati solo nella pagina corrente, quindi mostrare una pagina solo in base all'attributo ma che non deve durare tutta la sessione dell'utente nel sito
+SESSION scope: lo userei per il carrello di un e-commerce che mantiene i prodotti mentre navighi, in modo da non perdere il carrello ogni volta che si cambia pagina
+APPLICATION scope: lo userei per un offerta globale, un countdown.
