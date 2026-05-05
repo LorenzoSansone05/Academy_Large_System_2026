@@ -1,0 +1,37 @@
+Ecco le query generate da Hibernate, con alcune stampe per seguire meglio il flusso 
+
+Hibernate: insert into studenti (cognome,corso_laurea,data_nascita,email,nome,id) values (?,?,?,?,?,default)
+
+Hibernate: insert into studenti (cognome,corso_laurea,data_nascita,email,nome,id) values (?,?,?,?,?,default)
+
+Hibernate: insert into studenti (cognome,corso_laurea,data_nascita,email,nome,id) values (?,?,?,?,?,default)
+
+3 Studenti salvati
+
+
+
+Hibernate: select s1_0.id,s1_0.cognome,s1_0.corso_laurea,s1_0.data_nascita,s1_0.email,s1_0.nome from studenti s1_0
+
+Numero di studenti salvati: 3
+
+
+
+Hibernate: select s1_0.id,s1_0.cognome,s1_0.corso_laurea,s1_0.data_nascita,s1_0.email,s1_0.nome from studenti s1_0 where s1_0.id=?
+
+Hibernate: update studenti set cognome=?,corso_laurea=?,data_nascita=?,email=?,nome=? where id=?
+
+Corso aggiornato allo studente con ID 1: Marketing
+
+
+
+Hibernate: select s1_0.id,s1_0.cognome,s1_0.corso_laurea,s1_0.data_nascita,s1_0.email,s1_0.nome from studenti s1_0 where s1_0.id=?
+
+Hibernate: delete from studenti where id=?
+
+Studente con ID 3 eliminato.
+
+
+
+Hibernate: select s1_0.id,s1_0.cognome,s1_0.corso_laurea,s1_0.data_nascita,s1_0.email,s1_0.nome from studenti s1_0 where s1_0.corso_laurea=?
+
+Studenti trovati per il corso Informatica: 0
